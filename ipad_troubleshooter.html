@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title data-i18n="app_title">Supporto IPAD CIAO</title>
+  <style>
+  :root { --bg1: rgba(0,255,255,0.15); --bg2: rgba(255,0,255,0.15); --bg3a: #05010d; --bg3b: #0b0120; --panel: rgba(20, 10, 40, 0.9); --text: #fff; --accent1: #ff3c00; --accent2: #ff00ff; --accent3: #00ffff; --btn-bg: linear-gradient(135deg, #ff3c00, #ff00ff); --btn-bg-hover: linear-gradient(135deg, #00ffff, #ff00ff);} 
+  * { box-sizing: border-box; }
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: linear-gradient(120deg, var(--bg1), transparent 40%), linear-gradient(240deg, var(--bg2), transparent 40%), linear-gradient(0deg, var(--bg3a), var(--bg3b)); background-size: 200% 200%; animation: cyberMove 10s linear infinite; color: var(--text); font-size: 16px; line-height: 1.6;} 
+  @keyframes cyberMove { 0%{background-position:0% 50%} 100%{background-position:100% 50%} } 
+  .brand-left,.brand-right{position:fixed;top:16px;z-index:1000;display:flex;align-items:center;gap:8px;padding:4px 8px;border-radius:8px;background:rgba(0,0,0,.12);backdrop-filter:blur(2px)} 
+  .brand-left{left:16px} .brand-right{right:16px} 
+  .brand-left img{height:38px;width:auto;display:block;filter:drop-shadow(0 0 6px rgba(0,255,255,.5))} 
+  .brand-right .brand-text{font-weight:700;letter-spacing:.3px;color:#fff;text-shadow:0 0 6px rgba(0,255,255,.35),0 0 10px rgba(255,0,255,.25);font-size:18px;white-space:nowrap} 
+  .page-top-spacer{height:80px;width:100%} 
+  #app{max-width:980px;margin:0 auto 32px;padding:24px 24px 40px;background:var(--panel);border-radius:12px;box-shadow:0 0 20px rgba(0,255,255,.4),0 0 40px rgba(255,0,255,.2)} 
+  .app-header{display:grid;grid-template-columns:1fr;align-items:center;gap:8px;margin-bottom:12px;position:relative;text-align:center} 
+  h1{margin:0;text-align:center;text-shadow:0 0 5px var(--accent3),0 0 10px var(--accent3),0 0 20px var(--accent2);font-size:2rem;line-height:1.2} 
+  .step-title{margin-top:20px;margin-bottom:15px;font-size:1.5rem; font-weight: bold;} 
+  .step p { font-size: 1.15rem; margin-bottom: 25px; }
+  .step{display:none;margin:12px 0 28px} 
+  .step.is-active{display:block} 
+  .buttons-center{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:15px;width:100%} 
+  .btn,.btn-secondary{background:var(--btn-bg);color:#fff;border:none;padding:12px 20px;margin:8px 5px;cursor:pointer;border-radius:8px;font-size:16px;font-weight:bold;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 0 10px rgba(255,60,0,.6),0 0 20px rgba(255,0,255,.4);transition:all .25s ease} 
+  .btn:hover,.btn-secondary:hover{transform:translateY(-1px) scale(1.04);box-shadow:0 0 15px rgba(0,255,255,.8),0 0 30px rgba(255,0,255,.6);background:var(--btn-bg-hover)} 
+  .btn-secondary{background:linear-gradient(135deg,#7a7a7a,#444);box-shadow:0 0 10px rgba(120,120,120,.4),0 0 20px rgba(80,80,80,.3);text-transform:none;letter-spacing:0} 
+  .bottom-actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px;flex-wrap:wrap} 
+  .image-links{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px;margin-bottom:12px} 
+  .help-image{width:150px;height:110px;object-fit:cover;border-radius:12px;cursor:pointer;transition:.25s;box-shadow:0 0 12px rgba(0,0,0,.4)}
+  .help-image:hover{transform:scale(1.08);box-shadow:0 0 20px rgba(0,255,255,.8)}
+  .category-note{color:#ff4d4d;font-weight:700;display:block;margin-top:8px;}
+  li{color:#ffd3d3; margin-bottom: 8px;}
+  .lang-switcher{position:absolute; top:-8px; right:0; display:flex; gap:6px} 
+  .lang-switcher button{padding:6px 10px; font-size:12px; border-radius:6px; text-transform:none} 
+  .highlight { color: var(--accent3); font-weight: bold; }
+  /* Modal for images */
+  .modal{display:none;position:fixed;z-index:2000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,.9);justify-content:center;align-items:center;cursor:zoom-out}
+  .modal-content{max-width:95%;max-height:95%;border:2px solid var(--accent3);border-radius:8px;box-shadow:0 0 30px var(--accent3)}
+  </style>
+</head>
+<body>
+  <div class="brand-left">
+    <img src="images/dxc.png" alt="Logo DXC"/>
+  </div>
+  <div class="brand-right">
+    <span class="brand-text">EssilorLuxottica</span>
+  </div>
+  <div class="page-top-spacer"></div>
+
+  <div id="app">
+    <header class="app-header">
+      <h1 data-i18n="app_title">Supporto IPAD CIAO</h1>
+      <div class="lang-switcher">
+        <button type="button" class="btn-secondary" onclick="setLanguage('it')">Italiano 🇮🇹</button>
+        <button type="button" class="btn-secondary" onclick="setLanguage('en')">English 🇬🇧</button>
+      </div>
+    </header>
+
+    <main id="steps">
+      <!-- LANG SELECT -->
+      <section id="langSelect" class="step is-active">
+        <h2 class="step-title" data-i18n="lang_select_title">Seleziona la lingua / Select language</h2>
+         <div class="image-links">
+          <a href="images/step 1.jpg" onclick="openLightbox(event, this.href)">
+            <img src="images/step 1.jpg" class="help-image" alt="wifi"></a>
+        </div>
+        <div class="buttons-center">      
+          <button type="button" class="btn" onclick="setLanguage('it')" data-next="step1">Italiano 🇮🇹</button>
+          <button type="button" class="btn" onclick="setLanguage('en')" data-next="step1">English 🇬🇧</button>
+        </div>
+      </section>
+
+      <!-- STEP 1 (DIAGNOSI) -->
+      <section id="step1" class="step">
+        <h2 class="step-title" data-i18n="step1_title">🔹 Diagnosi Iniziale iPad</h2>
+        <p data-i18n="step1_text">Selezionare la tipologia di problema:</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_1" data-i18n="btn_conn">Connettività</button>
+          <button type="button" class="btn" data-next="step2" data-i18n="btn_xstore">Xstore</button>
+          <button type="button" class="btn" data-next="step3" data-i18n="btn_other">Altri applicativi</button>
+          <button type="button" class="btn" data-next="step4" data-i18n="btn_reg">Schermata di registrazione</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      
+      <!-- STEP 1-1 -->
+      <section id="step1_1" class="step">
+        <h2 class="step-title" data-i18n="step1_1_title">🔸 Rilevamento Rete Wi-Fi</h2>
+        <p data-i18n="step1_1_text" data-i18n-type="html">Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.<br><br>La rete è rilevata?</p>
+        <div class="image-links">
+          <a href="images/Step 1-1.jpeg" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 1-1.jpeg" class="help-image" alt="wifi"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_2" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_5" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-2 -->
+      <section id="step1_2" class="step">
+        <h2 class="step-title" data-i18n="step1_2_title">🔸 Verifica Password Wi-Fi</h2>
+        <p data-i18n="step1_2_text" data-i18n-type="html">Verificare se lo store dispone della password Wi-Fi e la inserisce correttamente. (Non comunicare la password allo store)</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_3" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-3 -->
+      <section id="step1_3" class="step">
+        <h2 class="step-title" data-i18n="step1_3_title">🔸 Controllo Parametri di Rete</h2>
+        <p data-i18n="step1_3_text" data-i18n-type="html">Effettuare le seguenti verifiche:<br>• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automatico<br><br>Le configurazioni sono corrette?</p>
+        <div class="image-links">
+          <a href="images/Step 1-3.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 1-3.png" class="help-image" alt="info"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_7" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_4" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-4 (TICKET LOCAL IT) -->
+      <section id="step1_4" class="step">
+        <h2 class="step-title" data-i18n="step1_4_title">🔸 Apertura Ticket Supporto Locale</h2>
+        <p data-i18n="step1_4_text" data-i18n-type="html">Problema iPad<br>Aprire un ticket e assegnarlo a <strong>“ITALY - LOCAL IT TEAM”</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero seriale<br><br>Categoria:</p>
+        <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-5 -->
+      <section id="step1_5" class="step">
+        <h2 class="step-title" data-i18n="step1_5_title">🔸 Analisi Diffusione Problema</h2>
+        <p data-i18n="step1_5_text">Verificare se la rete Wi-Fi non viene rilevata su tutti gli iPad.</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_6" data-i18n="btn_all">Da tutti gli iPad</button>
+          <button type="button" class="btn" data-next="step1_4" data-i18n="btn_one">Da un solo iPad</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-6 -->
+      <section id="step1_6" class="step">
+        <h2 class="step-title" data-i18n="step1_6_title">🔸 Verifica Infrastruttura Network</h2>
+        <p data-i18n="step1_6_text" data-i18n-type="html">Aprire un ticket e assegnarlo a <strong>"LUX_DXC EMEA_L2_NETWORK"</strong> per verificare se l’Access Point è fuori servizio.<br><br>Categoria:</p>
+        <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-7 -->
+      <section id="step1_7" class="step">
+        <h2 class="step-title" data-i18n="step1_7_title">🔸 Test Funzionalità Post-Configurazione</h2>
+        <p data-i18n="step1_7_text">Dopo la configurazione, verificare se l’iPad ha ripreso a funzionare.</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_4" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 1-8 -->
+      <section id="step1_8" class="step">
+        <h2 class="step-title" data-i18n="step1_8_title">🔸 Risoluzione e Chiusura</h2>
+        <p data-i18n="step1_8_text" data-i18n-type="html">Problema risolto<br>Aprire il ticket e chiuderlo come risolto.<br><br>Categoria:</p>
+        <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2 (XSTORE) -->
+      <section id="step2" class="step">
+        <h2 class="step-title" data-i18n="step2_title">🔹 Supporto Xstore</h2>
+        <p data-i18n="step2_text">Chiedere allo store quale tipo di problema sta riscontrando.</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_1" data-i18n="btn_q1">Problemi connettività</button>
+          <button type="button" class="btn" data-next="step2_7" data-i18n="btn_q2">Applicazione bloccata</button>
+          <button type="button" class="btn" data-next="step4" data-i18n="btn_q3">Registrazione IPAD</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-1 -->
+      <section id="step2_1" class="step">
+        <h2 class="step-title" data-i18n="step2_1_title">🔸 Verifica Connessione WiFi</h2>
+        <p data-i18n="step2_1_text">Verificare se l’iPad è correttamente connesso alla rete Wi-Fi.</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_2" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_1" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-2 -->
+      <section id="step2_2" class="step">
+        <h2 class="step-title" data-i18n="step2_2_title">🔸 Riavvio Dispositivo</h2>
+        <p data-i18n="step2_2_text" data-i18n-type="html">Riavviare completamente l’iPad.<br>Xstore funziona?<br></p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_3" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-3 -->
+      <section id="step2_3" class="step">
+        <h2 class="step-title" data-i18n="step2_3_title">🔸 Reset Servizio Tablet</h2>
+        <p data-i18n="step2_3_text" data-i18n-type="html">Eseguire il comando:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Attendere il riavvio del servizio.<br>Xstore funziona?<br></p>
+        <div class="image-links">
+          <a href="images/Step 2-3.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-3.png" class="help-image" alt="micros"></a>
+          <a href="images/Step 2-3-2.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-3-2.png" class="help-image" alt="micros"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_4" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-4 -->
+      <section id="step2_4" class="step">
+        <h2 class="step-title" data-i18n="step2_4_title">🔸 Ripristino Applicazione</h2>
+        <p data-i18n="step2_4_text" data-i18n-type="html">Chiedere allo store di disinstallare e reinstallare l’applicazione Xstore.<br><br>Lo store è riuscito?</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_5" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_11" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-5 -->
+      <section id="step2_5" class="step">
+        <h2 class="step-title" data-i18n="step2_5_title">🔸 Configurazione Host/Porta</h2>
+        <p data-i18n="step2_5_text" data-i18n-type="html">Configurare l’app Xstore inserendo:<br>• Nome host: Micros-pos<br>• Porta: 8543</p>
+        <div class="image-links">
+          <a href="images/Step 2-5 .png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-5 .png" class="help-image" alt="config"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_6" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-6 -->
+      <section id="step2_6" class="step">
+        <h2 class="step-title" data-i18n="step2_6_title">🔸 Configurazione SAP e Cassa</h2>
+        <p data-i18n="step2_6_text" data-i18n-type="html">Accedere a Dettagli ubicazione e inserire:<br>• Negozio: codice SAP esteso<br>&nbsp;&nbsp;o C → 12 (es. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (es. E971 → 14971)<br>• Registratore:<br>&nbsp;&nbsp;o 30 = primo iPad<br>&nbsp;&nbsp;o 31 = secondo iPad<br><br>Salvare le modifiche.</p>
+        <div class="image-links">
+          <a href="images/Step 2-6.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-6.png" class="help-image" alt="sap"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_7" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-7 a 2-10 -->
+      <section id="step2_7" class="step">
+        <h2 class="step-title" data-i18n="step2_7_title">🔸 Gestione Application Blocked</h2>
+        <p data-i18n="step2_7_text" data-i18n-type="html">Comparirà il messaggio “APPLICATION BLOCKED”.<br><br>Procedere con l’abilitazione dell’iPad.</p>
+        <div class="image-links">
+          <a href="images/Step 2-7.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-7.png" class="help-image" alt="blocked"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_8" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <section id="step2_8" class="step">
+        <h2 class="step-title" data-i18n="step2_8_title">🔸 Accesso Backoffice CIAO</h2>
+        <p data-i18n="step2_8_text">Accedere a Ciao → Backoffice.</p>
+        <div class="image-links">
+          <a href="images/step 2-8.png" onclick="openLightbox(event, this.href)">
+            <img src="images/step 2-8.png" class="help-image" alt="ciao"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_9" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <section id="step2_9" class="step">
+        <h2 class="step-title" data-i18n="step2_9_title">🔸 Accesso Sezione Supporto</h2>
+        <p data-i18n="step2_9_text">Selezionare la voce SUPPORTO.</p>
+        <div class="image-links">
+          <a href="images/Step 2-9.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-9.png" class="help-image" alt="supporto"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step2_10" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <section id="step2_10" class="step">
+        <h2 class="step-title" data-i18n="step2_10_title">🔸 Autorizzazione Dispositivo Mobile</h2>
+        <p data-i18n="step2_10_text" data-i18n-type="html">Selezionare Accesso dispositivo mobile e autorizzare l’iPad.<br><br>Xstore funziona?</p>
+        <div class="image-links">
+          <a href="images/Step 2-10.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-10.png" class="help-image" alt="auth"></a>
+          <a href="images/Step 2-10-2.png" onclick="openLightbox(event, this.href)">
+            <img src="images/Step 2-10-2.png" class="help-image" alt="auth"></a>
+        </div>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_11" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 2-11 (TICKET CIAO HD2) -->
+      <section id="step2_11" class="step">
+        <h2 class="step-title" data-i18n="step2_11_title">🔸 Escalation Supporto CIAO L2</h2>
+        <p data-i18n="step2_11_text" data-i18n-type="html">Aprire un ticket e assegnarlo a <strong>“LUX_CIAO_HD2”</strong><br>Inserire:<br>• MAC Address<br>• Numero seriale<br><br>Categoria:</p>
+        <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 3 (ALTRI) -->
+      <section id="step3" class="step">
+        <h2 class="step-title" data-i18n="step3_title">🔹 Supporto Altri Applicativi</h2>
+        <p data-i18n="step3_text" data-i18n-type="html">Chiedere allo store di disinstallare e reinstallare l’applicativo tramite HUB (equivalente dell’App Store).<br><br>Il problema è risolto?</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_11" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 4 (CREDENTIALS) -->
+      <section id="step4" class="step">
+        <h2 class="step-title" data-i18n="step4_title">🔸 Inserimento Credenziali</h2>
+        <p data-i18n="step4_text" data-i18n-type="html"></p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step4_1" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 4-1 (APP DOWNLOAD) -->
+      <section id="step4_1" class="step">
+        <h2 class="step-title" data-i18n="step4_1_title">🔸 Download Applicazioni</h2>
+        <p data-i18n="step4_1_text" data-i18n-type="html"></p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step4_2" data-i18n="btn_next">AVANTI</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+      <!-- STEP 4-2 (VERIFICATION) -->
+      <section id="step4_2" class="step">
+        <h2 class="step-title" data-i18n="step4_2_title">🔸 Verifica Funzionamento</h2>
+        <p data-i18n="step4_2_text" data-i18n-type="html"></p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step2_5" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+    </main>
+
+    <div id="modal" class="modal" onclick="this.style.display='none'">
+      <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+    const i18n = {
+      it: {
+        lang_select_title: "Seleziona la lingua / Select language",
+      yes: "SÌ", no: "NO", btn_back: "Indietro", btn_next: "AVANTI", btn_copy: "Copia cronologia",
+      copy_success: "Cronologia copiata negli appunti!",
+      step1_title: "🔹 Diagnosi Iniziale iPad",
+      step1_text: "Selezionare la tipologia di problema:",
+      btn_conn: "• Connettività", btn_xstore: "• Xstore", btn_other: "• Altri applicativi", btn_reg: "• Schermata di registrazione",
+      step1_1_title: "🔸 Rilevamento Rete Wi-Fi",
+      step1_1_text: "Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.La rete è rilevata?",
+      step1_2_title: "🔸 Verifica Password Wi-Fi",
+      step1_2_text: "Verificare se lo store dispone della password Wi-Fi e la inserisce correttamente. (Non comunicare la password allo store)",
+      step1_3_title: "🔸 Controllo Parametri di Rete",
+      step1_3_text: "Effettuare le seguenti verifiche:• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automaticoLe configurazioni sono corrette?",
+      step1_4_title: "🔸 Apertura Ticket Supporto Locale",
+      step1_4_text: "Problema iPad<br>Aprire un ticket e assegnarlo a <strong>“ITALY - LOCAL IT TEAM”</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero serialeCategoria:",
+      step1_5_title: "🔸 Analisi Diffusione Problema",
+      step1_5_text: "Verificare se la rete Wi-Fi non viene rilevata su tutti gli iPad.",
+      btn_all: "Da tutti gli iPad", btn_one: "Da un solo iPad",
+      step1_6_title: "🔸 Verifica Infrastruttura Network",
+      step1_6_text: "Aprire un ticket e assegnarlo a <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> per verificare se l’Access Point è fuori servizio.Categoria:",
+      step1_7_title: "🔸 Test Funzionalità Post-Configurazione",
+      step1_7_text: "Dopo la configurazione, verificare se l’iPad ha ripreso a funzionare.",
+      step1_8_title: "🔸 Risoluzione e Chiusura",
+      step1_8_text: "Problema risoltoAprire il ticket e chiuderlo come risolto.Categoria:",
+      step2_title: "🔹 Supporto Xstore",
+      step2_text: "Chiedere allo store quale tipo di problema sta riscontrando.",
+      btn_q1: "Problemi connettività", btn_q2: "Applicazione bloccata", btn_q3: "Registrazione iPad",
+      step2_1_title: "🔸 Verifica Connessione WiFi",
+      step2_1_text: "Verificare se l’iPad è correttamente connesso alla rete Wi-Fi.",
+      step2_2_title: "🔸 Riavvio Dispositivo",
+      step2_2_text: "Riavviare completamente l’iPad.<br><br>Xstore funziona?",
+      step2_3_title: "🔸 Reset Servizio Tablet",
+      step2_3_text: "Eseguire il comando:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Attendere il riavvio del servizio.<br><br>Xstore funziona?",
+      step2_4_title: "🔸 Ripristino Applicazione",
+      step2_4_text: "Chiedere allo store di disinstallare e reinstallare l’applicazione Xstore.<br><br>Lo store è riuscito?",
+      step2_5_title: "🔸 Configurazione Host/Porta",
+      step2_5_text: "Configurare l’app Xstore inserendo:<br>• Nome host: Micros-pos<br>• Porta: 8543",
+      step2_6_title: "🔸 Configurazione SAP e Cassa",
+      step2_6_text: "Accedere a Dettagli ubicazione e inserire:<br>• Negozio: codice SAP esteso<br>&nbsp;&nbsp;o C → 12 (es. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (es. E971 → 14971)<br>• Registratore:<br>&nbsp;&nbsp;o 30 = primo iPad<br>&nbsp;&nbsp;o 31 = secondo iPad<br><br>Salvare le modifiche.",
+      step2_7_title: "🔸 Gestione Application Blocked",
+      step2_7_text: "Comparirà il messaggio “APPLICATION BLOCKED”.<br><br>Procedere con l’abilitazione dell’iPad.",
+      step2_8_title: "🔸 Accesso Backoffice CIAO",
+      step2_8_text: "Accedere a Ciao → Backoffice.",
+      step2_9_title: "🔸 Accesso Sezione Supporto",
+      step2_9_text: "Selezionare la voce SUPPORTO.",
+      step2_10_title: "🔸 Autorizzazione Dispositivo Mobile",
+      step2_10_text: "Selezionare Accesso dispositivo mobile e autorizzare l’iPad.Xstore funziona?",
+      step2_11_title: "🔸 Escalation Supporto CIAO L2",
+      step2_11_text: "Aprire un ticket e assegnarlo a <strong>“LUX_CIAO_HD2”</strong><br>Inserire:<br>• MAC Address<br>• Numero serialeCategoria:",
+      step3_title: "🔹 Supporto Altri Applicativi",
+      step3_text: "Chiedere allo store di disinstallare e reinstallare l’applicativo tramite HUB (equivalente dell’App Store).<br><br>Il problema è risolto?",
+      step4_title: "🔸 Inserimento Credenziali",
+      step4_text: "INSERIRE, nei campi NOME UTENTE e PASSWORD, le credenziali specifiche per il negozio in questione:<br><br>Il NOME UTENTE corrisponderà sempre alla seguente combinazione:<br>• (es. Salmoiraghi & Viganò) <strong>sv</strong>CODICESAP (es. sva123 se il negozio ha codice SAP A123)<br>• (es. Grand Vision) <strong>gv</strong>CODICESAP (es. gvk123 se il negozio ha codice SAP K123)<br>• (es. SOLARIS) <strong>sol</strong>CODICESAP (es. solk215 se il negozio ha codice SAP K215)<br><br>La PASSWORD corrisponderà sempre a: <strong>Luxottica01</strong>",
+      step4_1_title: "🔸 Download Applicazioni",
+      step4_1_text: "Lasciare che l’iPad scarichi automaticamente le applicazioni precedentemente installate; in alternativa, accedere a HUB (equivalente dell’App Store) per scaricare manualmente le applicazioni necessarie.",
+      step4_2_title: "🔸 Verifica Funzionamento",
+      step4_2_text: "Dopo l'installazione chiedere allo Store: Xstore funziona?",
+      alt_step1: "Immagine Diagnosi",
+      alt_step1_1: "Verifica segnale WiFi",
+      alt_step1_2: "Schermata password",
+      alt_wifi_info: "Informazioni WiFi iPad",
+      alt_mac_serial: "MAC e Seriale iPad",
+      alt_step1_5: "Controllo multidevice",
+      alt_step1_6: "Analisi di rete",
+      alt_step1_7: "Test browser",
+      alt_step1_8: "Conferma chiusura",
+      alt_step2: "Menu Xstore",
+      alt_step2_1: "Icona WiFi",
+      alt_step2_2: "Logo mela",
+      alt_micros_restart: "Riavvio Tablet Micros",
+      alt_step2_4: "Eliminazione app",
+      alt_step2_5: "Dati connessione",
+      alt_sap_config: "Configurazione SAP",
+      alt_app_blocked: "Errore Application Blocked",
+      alt_step2_8: "Login CIAO",
+      alt_step2_9: "Menu Supporto",
+      alt_ciao_auth: "Autorizzazione CIAO",
+      alt_step2_11: "Dati Seriale",
+      alt_step3: "Reinstallazione generale",
+      },
+    en: {
+      app_title: "CIAO iPad Support",
+      lang_select_title: "Select language / Seleziona la lingua",
+      yes: "YES", no: "NO", btn_back: "back", btn_next: "NEXT", btn_copy: "Copy history",
+      copy_success: "Troubleshooting history copied!",
+      step1_title: "🔹 Initial iPad Diagnosis",
+      step1_text: "Select problem type:",
+      btn_conn: "• Connectivity", btn_xstore: "• Xstore", btn_other: "• Other apps", btn_reg: "• Registration screen",
+      step1_1_title: "🔸 WiFi Network Detection",
+      step1_1_text: "Ask the store if the iPad detects the “WIFI_STORE_EMEA” network.Is the network detected?",
+      step1_2_title: "🔸 WiFi Password Verification",
+      step1_2_text: "Verify if the store has the Wi-Fi password and is entering it correctly.<br>(Do not share password with store)",
+      step1_3_title: "🔸 Network Parameter Check",
+      step1_3_text: "Perform following checks:• Open network info (ℹ️) “WIFI_STORE_EMEA”<br>• Verify “Private Wi-Fi Address” is disabled<br>• Verify “Configure DNS” is set to automaticAre the configurations correct?",
+      step1_4_title: "🔸 Local Support Ticket Opening",
+      step1_4_text: "iPad Problem<br>Open a ticket and assign it to <strong>“ITALY - LOCAL IT TEAM”</strong><br>Insert:<br>• iPad MAC Address (Wi-Fi address in info ℹ️)<br>• Serial numberCategory:",
+      step1_5_title: "🔸 Service Outage Scope Analysis",
+      step1_5_text: "Check if the Wi-Fi network is not detected on all iPads.",
+      btn_all: "On all iPads", btn_one: "On only one iPad",
+      step1_6_title: "🔸 Network Infrastructure Check",
+      step1_6_text: "Open a ticket and assign it to <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> to check if the Access Point is out of service.Category:",
+      step1_7_title: "🔸 Post-Configuration Functionality Test",
+      step1_7_text: "After configuration, check if the iPad is working again.",
+      step1_8_title: "🔸 Resolution & Closure",
+      step1_8_text: "Problem resolvedOpen ticket and close as resolved.Category:",
+      step2_title: "🔹 Xstore Support",
+      step2_text: "Ask the store what problem they are experiencing.",
+      btn_q1: "Connectivity problem", btn_q2: "Application blocked", btn_q3: "iPad Registration",
+      step2_1_title: "🔸 WiFi Connection Verification",
+      step2_1_text: "Verify if iPad is correctly connected to Wi-Fi network.",
+      step2_2_title: "🔸 Device Restart",
+      step2_2_text: "Completely restart iPad.<br><br>Does Xstore work?",
+      step2_3_title: "🔸 Tablet Service Reset",
+      step2_3_text: "Execute command:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Wait for service restart.<br><br>Does Xstore work?",
+      step2_4_title: "🔸 Application Recovery",
+      step2_4_text: "Ask store to uninstall and reinstall Xstore application.<br><br>Did the store succeed?",
+      step2_5_title: "🔸 Host/Port Configuration",
+      step2_5_text: "Configure Xstore app by entering:<br>• Host name: Micros-pos<br>• Port: 8543",
+      step2_6_title: "🔸 SAP and Register Configuration",
+      step2_6_text: "Access Location Details and enter:<br>• Store: extended SAP code<br>&nbsp;&nbsp;o C → 12 (e.g. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (e.g. E971 → 14971)<br>• Register:<br>&nbsp;&nbsp;o 30 = first iPad<br>&nbsp;&nbsp;o 31 = second iPad<br><br>Save changes.",
+      step2_7_title: "🔸 Application Blocked Management",
+      step2_7_text: "The message “APPLICATION BLOCKED” will appear.<br><br>Proceed with iPad enabling.",
+      step2_8_title: "🔸 CIAO Backoffice Access",
+      step2_8_text: "Access Ciao → Backoffice.",
+      step2_9_title: "🔸 Support Menu Navigation",
+      step2_9_text: "Select SUPPORT option.",
+      step2_10_title: "🔸 Mobile Device Authorization",
+      step2_10_text: "Select Mobile device access and authorize iPad.Does Xstore work?",
+      step2_11_title: "🔸 CIAO Specialist Support",
+      step2_11_text: "Open a ticket and assign it to <strong>“LUX_CIAO_HD2”</strong><br>Insert:<br>• MAC Address<br>• Serial numberCategory:",
+      step3_title: "🔹 Other Applications Support",
+      step3_text: "Ask the store to uninstall and reinstall the application via HUB (the equivalent of the App Store).<br><br>Is problem resolved?",
+      step4_title: "🔸 Credential Entry",
+      step4_text: "ENTER, in the USERNAME and PASSWORD fields, the specific credentials for the store:<br><br>The USERNAME will always match the following combination:<br>• (e.g. Salmoiraghi & Viganò) <strong>sv</strong>SAPCODE (e.g. sva123 if the store has SAP code A123)<br>• (e.g. Grand Vision) <strong>gv</strong>SAPCODE (e.g. gvk123 if the store has SAP code K123)<br>• (e.g. SOLARIS) <strong>sol</strong>SAPCODE (e.g. solk215 if the store has SAP code K215)<br><br>The PASSWORD will always be: <strong>Luxottica01</strong>",
+      step4_1_title: "🔸 Application Download",
+      step4_1_text: "Let the iPad automatically download the previously installed applications; alternatively, access HUB (App Store equivalent) to manually download the necessary applications.",
+      step4_2_title: "🔸 Functionality Check",
+      step4_2_text: "After installation, ask the Store: Does Xstore work?",
+      alt_step1: "Diagnosis Image",
+      alt_step1_1: "WiFi signal check",
+      alt_step1_2: "Password screen",
+      alt_wifi_info: "iPad WiFi Info",
+      alt_mac_serial: "iPad MAC and Serial",
+      alt_step1_5: "Multidevice check",
+      alt_step1_6: "Network analysis",
+      alt_step1_7: "Browser test",
+      alt_step1_8: "Closure confirmation",
+      alt_step2: "Xstore menu",
+      alt_step2_1: "WiFi icon",
+      alt_step2_2: "Apple logo",
+      alt_micros_restart: "Micros Tablet Restart",
+      alt_step2_4: "Delete app",
+      alt_step2_5: "Connection data",
+      alt_sap_config: "SAP Configuration",
+      alt_app_blocked: "Application Blocked Error",
+      alt_step2_8: "CIAO login",
+      alt_step2_9: "Support menu",
+      alt_ciao_auth: "CIAO Authorization",
+      alt_step2_11: "Serial data",
+      alt_step3: "General reinstall",
+      }
+    };
+
+
+  const historyStack = [];
+let currentStepId = 'langSelect';
+let language = 'it';
+const clickTrail = [];
+
+function getI18nText(el, lang) {
+  if (!el) return "";
+  const key = el.getAttribute('data-i18n');
+  if (!key) return el.innerText;
+  return key;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  showStep(currentStepId);
+
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('button');
+    if (!target) return;
+
+    const nextId = target.getAttribute('data-next');
+    const isBack = target.hasAttribute('data-back');
+    const isCopy = target.hasAttribute('data-copy');
+
+    if (isCopy) {
+      copyHistory();
+      return;
+    }
+
+    if (isBack) {
+      goBack();
+      return;
+    }
+
+    if (nextId) {
+      try {
+        const itLabel = getTextFromI18n(target, 'it');
+        const enLabel = getTextFromI18n(target, 'en');
+        clickTrail.push({ stepId: currentStepId, it: itLabel, en: enLabel });
+      } catch (err) { /* ignore */ }
+      goTo(nextId);
+    }
+  });
+});
+
+function setLanguage(lang) {
+  language = lang;
+  document.documentElement.lang = lang;
+  updateUI();
+}
+
+function updateUI() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const text = i18n[language][key];
+    if (text) {
+      if (el.getAttribute('data-i18n-type') === 'html') el.innerHTML = text;
+      else el.innerText = text;
+    }
+  });
+}
+
+function openLightbox(e, src) {
+  e.preventDefault();
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('modal-img').src = src;
+}
+
+function showStep(stepId){
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('is-active'));
+  const stepEl = document.getElementById(stepId);
+  if (stepEl){
+    stepEl.classList.add('is-active');
+  }
+}
+
+function stripHTML(html) {
+  const tmp = document.createElement("div");
+  // Sostituisce i tag <br> con caratteri di nuova riga per preservare la formattazione nel testo piano
+  tmp.innerHTML = html.replace(/<br\s*\/?>/gi, '\n');
+  return (tmp.textContent || tmp.innerText || "").trim();
+}
+
+function looksLikeHtml(str) {
+  const s = String(str || "");
+  return /<[^>]+>/.test(s) || /&[a-zA-Z#0-9]+;/.test(s);
+}
+
+function getTextFromI18n(el, langCode) {
+  const key = el.getAttribute("data-i18n");
+  const type = el.getAttribute("data-i18n-type");
+  if (key) {
+    let val = (i18n[langCode] && i18n[langCode][key]) || (i18n.it && i18n.it[key]) || "";
+    if (!val) return (el.innerText || "").trim();
+    if (type === "html" || looksLikeHtml(val)) return stripHTML(val);
+    return String(val).trim();
+  }
+  return (el.innerText || "").trim();
+}
+
+function goTo(stepId) {
+  if (stepId === currentStepId) return;
+  historyStack.push(currentStepId);
+  currentStepId = stepId;
+  showStep(stepId);
+}
+
+function goBack() {
+  if (!historyStack.length) return;
+  currentStepId = historyStack.pop();
+  clickTrail.pop();
+  showStep(currentStepId);
+}
+
+function copyHistory() {
+  const prefixEn = 'The store reported issues with the iPad. Below is the troubleshooting performed and the checks carried out.';
+  const prefixIt = 'Lo store ha segnalato problemi con l’iPad. Di seguito il troubleshooting effettuato e le verifiche eseguite.';
+
+  const choiceByStep = {};
+  clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
+  const SKIP_STEPS = new Set(['langSelect','step1']);
+
+  const buildSection = (langCode) => {
+    let sec = '';
+    const allSteps = [...historyStack, currentStepId];
+    allSteps.forEach((stepId) => {
+      if (SKIP_STEPS.has(stepId)) return;
+      const step = document.getElementById(stepId);
+      if (!step) return;
+
+      const ch = choiceByStep[stepId];
+      const chosen = ch ? (langCode === 'en' ? ch.en : ch.it) : '';
+
+      let appendedChoice = false;
+      const lines = step.querySelectorAll('p, li');
+      lines.forEach(node => {
+        let line = getTextFromI18n(node, langCode);
+        if (!line) return;
+        if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
+          line = `${line} → ${chosen}`;
+          appendedChoice = true;
+        }
+        sec += `• ${line}\n`;
+      });
+      if (chosen && !appendedChoice) {
+        sec += `→ ${chosen}\n`;
+      }
+      sec += `\n`;
+    });
+    return sec.trim();
+  };
+
+  const itSection = buildSection('it');
+  const enSection = buildSection('en');
+
+  const finalOutput = `${prefixIt}\n\n${itSection ? itSection + '\n' : ''}\n--------------------------------------\n\n${prefixEn}\n\n${enSection}`;
+
+  navigator.clipboard.writeText(finalOutput)
+    .then(() => alert(i18n[language].copy_success))
+    .catch(() => alert('Error during copy'));
+}
+  </script>
+</body></html>

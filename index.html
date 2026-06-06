@@ -673,6 +673,7 @@ function copyHistory() {
 
   const buildSection = (langCode) => {
     let sec = '';
+    const separator = langCode === 'it' ? ' => Risposta: ' : ' => Answer: ';
     const allSteps = [...historyStack, currentStepId];
     allSteps.forEach((stepId) => {
       if (SKIP_STEPS.has(stepId)) return;
@@ -688,13 +689,13 @@ function copyHistory() {
         let line = getTextFromI18n(node, langCode);
         if (!line) return;
         if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
-          line = `${line} → ${chosen}`;
+          line = `${line}${separator}${chosen}`;
           appendedChoice = true;
         }
         sec += `• ${line}\n`;
       });
       if (chosen && !appendedChoice) {
-        sec += `→ ${chosen}\n`;
+        sec += `${separator}${chosen}\n`;
       }
       sec += `\n`;
     });

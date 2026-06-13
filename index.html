@@ -74,6 +74,7 @@
       <!-- STEP 1 (DIAGNOSI) -->
       <section id="step1" class="step">
         <h2 class="step-title" data-i18n="step1_title">🔹 Diagnosi Iniziale iPad</h2>
+        <p data-i18n="step1_intro" data-i18n-type="html">Segui i passaggi indicati chiedendo conferma allo store ad ogni step. Procedi nel flusso in base alle risposte ricevute, fino alla risoluzione o all'apertura del ticket indicato.</p>
         <p data-i18n="step1_text">Selezionare la tipologia di problema:</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-next="step1_1" data-i18n="btn_conn">Connettività</button>
@@ -88,7 +89,7 @@
       <!-- STEP 1-1 -->
       <section id="step1_1" class="step">
         <h2 class="step-title" data-i18n="step1_1_title">🔸 Rilevamento Rete Wi-Fi</h2>
-        <p data-i18n="step1_1_text" data-i18n-type="html">Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.<br><br>La rete è rilevata?</p>
+        <p data-i18n="step1_1_text" data-i18n-type="html">Chiedere allo store se l'iPad rileva la rete Wi-Fi "WIFI_STORE_EMEA".<br><br>La rete è rilevata?</p>
         <div class="image-links">
           <a href="images/Step 1-1.jpeg" onclick="openLightbox(event, this.href)">
             <img src="images/Step 1-1.jpeg" class="help-image" alt="wifi"></a>
@@ -103,17 +104,30 @@
       <!-- STEP 1-2 -->
       <section id="step1_2" class="step">
         <h2 class="step-title" data-i18n="step1_2_title">🔸 Verifica Password Wi-Fi</h2>
-        <p data-i18n="step1_2_text" data-i18n-type="html">Verificare se lo store dispone della password Wi-Fi e la inserisce correttamente. (Non comunicare la password allo store)</p>
+        <p data-i18n="step1_2_text" data-i18n-type="html">Verificare che lo store disponga della password Wi-Fi corretta e la inserisca correttamente.<br>(Non comunicare la password allo store)<br><br>L'iPad si connette alla rete?</p>
         <div class="buttons-center">
-          <button type="button" class="btn" data-next="step1_3" data-i18n="btn_next">AVANTI</button>
+          <button type="button" class="btn" data-next="step1_3" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_2b" data-i18n="no">NO</button>
         </div>
         <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
       </section>
 
+      <!-- STEP 1-2b -->
+      <section id="step1_2b" class="step">
+        <h2 class="step-title" data-i18n="step1_2b_title">🔸 Correzione Password Wi-Fi</h2>
+        <p data-i18n="step1_2b_text" data-i18n-type="html">Far inserire nuovamente la password corretta allo store, verificando maiuscole/minuscole e caratteri speciali.<br><br>Dopo il nuovo tentativo, l'iPad si connette?</p>
+        <div class="buttons-center">
+          <button type="button" class="btn" data-next="step1_3" data-i18n="yes">SÌ</button>
+          <button type="button" class="btn" data-next="step1_4" data-i18n="no">NO</button>
+        </div>
+        <button type="button" class="btn-secondary" data-back data-i18n="btn_back">indietro</button>
+      </section>
+
+
       <!-- STEP 1-3 -->
       <section id="step1_3" class="step">
         <h2 class="step-title" data-i18n="step1_3_title">🔸 Controllo Parametri di Rete</h2>
-        <p data-i18n="step1_3_text" data-i18n-type="html">Effettuare le seguenti verifiche:<br>• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automatico<br><br>Le configurazioni sono corrette?</p>
+        <p data-i18n="step1_3_text" data-i18n-type="html">Effettuare le seguenti verifiche:• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automatico<br><br>Le configurazioni sono corrette?</p>
         <div class="image-links">
           <a href="images/Step 1-3.png" onclick="openLightbox(event, this.href)">
             <img src="images/Step 1-3.png" class="help-image" alt="info"></a>
@@ -128,7 +142,7 @@
       <!-- STEP 1-4 (TICKET LOCAL IT) -->
       <section id="step1_4" class="step">
         <h2 class="step-title" data-i18n="step1_4_title">🔸 Apertura Ticket Supporto Locale</h2>
-        <p data-i18n="step1_4_text" data-i18n-type="html">Problema iPad<br>Aprire un ticket e assegnarlo a <strong>“ITALY - LOCAL IT TEAM”</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero seriale<br><br>Categoria:</p>
+        <p data-i18n="step1_4_text" data-i18n-type="html"><strong>Problema:</strong> iPad non rileva/non si connette alla rete Wi-Fi.<br><br>Aprire un ticket e assegnarlo a <strong>"ITALY - LOCAL IT TEAM"</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero seriale<br><br>Categoria:</p>
         <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
@@ -161,7 +175,7 @@
       <!-- STEP 1-7 -->
       <section id="step1_7" class="step">
         <h2 class="step-title" data-i18n="step1_7_title">🔸 Test Funzionalità Post-Configurazione</h2>
-        <p data-i18n="step1_7_text">Dopo la configurazione, verificare se l’iPad ha ripreso a funzionare.</p>
+        <p data-i18n="step1_7_text" data-i18n-type="html">Dopo la configurazione, verificare se l'iPad ha ripreso a funzionare.<br><br>L'iPad funziona correttamente?</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-next="step1_8" data-i18n="yes">SÌ</button>
           <button type="button" class="btn" data-next="step1_4" data-i18n="no">NO</button>
@@ -172,7 +186,7 @@
       <!-- STEP 1-8 -->
       <section id="step1_8" class="step">
         <h2 class="step-title" data-i18n="step1_8_title">🔸 Risoluzione e Chiusura</h2>
-        <p data-i18n="step1_8_text" data-i18n-type="html">Problema risolto<br>Aprire il ticket e chiuderlo come risolto.<br><br>Categoria:</p>
+        <p data-i18n="step1_8_text" data-i18n-type="html"><strong>Problema risolto.</strong><br><br>Aprire il ticket e chiuderlo come risolto.<br><br>Categoria:</p>
         <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
@@ -195,7 +209,7 @@
       <!-- STEP 2-1 -->
       <section id="step2_1" class="step">
         <h2 class="step-title" data-i18n="step2_1_title">🔸 Verifica Connessione WiFi</h2>
-        <p data-i18n="step2_1_text">Verificare se l’iPad è correttamente connesso alla rete Wi-Fi.</p>
+        <p data-i18n="step2_1_text" data-i18n-type="html">Verificare se l'iPad è correttamente connesso alla rete Wi-Fi.<br><br>L'iPad è connesso?</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-next="step2_2" data-i18n="yes">SÌ</button>
           <button type="button" class="btn" data-next="step1_1" data-i18n="no">NO</button>
@@ -312,7 +326,7 @@
 
       <section id="step2_10" class="step">
         <h2 class="step-title" data-i18n="step2_10_title">🔸 Autorizzazione Dispositivo Mobile</h2>
-        <p data-i18n="step2_10_text" data-i18n-type="html">Selezionare Accesso dispositivo mobile e autorizzare l’iPad.<br><br>Xstore funziona?</p>
+        <p data-i18n="step2_10_text" data-i18n-type="html">Selezionare Accesso dispositivo mobile e autorizzare l'iPad.<br><br>Xstore funziona?</p>
         <div class="image-links">
           <a href="images/Step 2-10.png" onclick="openLightbox(event, this.href)">
             <img src="images/Step 2-10.png" class="help-image" alt="auth"></a>
@@ -329,7 +343,7 @@
       <!-- STEP 2-11 (TICKET CIAO HD2) -->
       <section id="step2_11" class="step">
         <h2 class="step-title" data-i18n="step2_11_title">🔸 Escalation Supporto CIAO L2</h2>
-        <p data-i18n="step2_11_text" data-i18n-type="html">Aprire un ticket e assegnarlo a <strong>“LUX_CIAO_HD2”</strong><br>Inserire:<br>• MAC Address<br>• Numero seriale<br><br>Categoria:</p>
+        <p data-i18n="step2_11_text" data-i18n-type="html"><strong>Problema:</strong> Xstore non funziona dopo tutte le verifiche e configurazioni effettuate.<br><br>Aprire un ticket e assegnarlo a <strong>"LUX_CIAO_HD2"</strong><br>Inserire:<br>• MAC Address<br>• Numero seriale<br><br>Categoria:</p>
         <p class="category-note">RETAIL > APPLICATION > CIAO OPTICAL > SW > IPAD CONNECTION/CONFIGURATION</p>
         <div class="buttons-center">
           <button type="button" class="btn" data-copy data-i18n="btn_copy">Copia cronologia</button>
@@ -390,51 +404,55 @@
         lang_select_title: "Seleziona la lingua / Select language",
       yes: "SÌ", no: "NO", btn_back: "Indietro", btn_next: "AVANTI", btn_copy: "Copia cronologia",
       copy_success: "Cronologia copiata negli appunti!",
+      copy_error: "Errore durante la copia",
+      step1_intro: "Segui i passaggi indicati chiedendo conferma allo store ad ogni step. Procedi nel flusso in base alle risposte ricevute, fino alla risoluzione o all'apertura del ticket indicato.",
       step1_title: "🔹 Diagnosi Iniziale iPad",
       step1_text: "Selezionare la tipologia di problema:",
       btn_conn: "• Connettività", btn_xstore: "• Xstore", btn_other: "• Altri applicativi", btn_reg: "• Schermata di registrazione",
       step1_1_title: "🔸 Rilevamento Rete Wi-Fi",
-      step1_1_text: "Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.La rete è rilevata?",
+      step1_1_text: "<br>Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.<br><br>La rete è rilevata?",
       step1_2_title: "🔸 Verifica Password Wi-Fi",
-      step1_2_text: "Verificare se lo store dispone della password Wi-Fi e la inserisce correttamente. (Non comunicare la password allo store)",
+      step1_2_text: "Verificare che lo store disponga della password Wi-Fi corretta e la inserisca correttamente.<br>(Non comunicare la password allo store)<br><br>L'iPad si connette alla rete?",
+      step1_2b_title: "🔸 Correzione Password Wi-Fi",
+      step1_2b_text: "Far inserire nuovamente la password corretta allo store, verificando maiuscole/minuscole e caratteri speciali.<br><br>Dopo il nuovo tentativo, l'iPad si connette?",
       step1_3_title: "🔸 Controllo Parametri di Rete",
-      step1_3_text: "Effettuare le seguenti verifiche:• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automaticoLe configurazioni sono corrette?",
+      step1_3_text: "Effettuare le seguenti verifiche:• Aprire le informazioni della rete (ℹ️) “WIFI_STORE_EMEA”<br>• Verificare che “Indirizzo Wi-Fi privato” sia disattivato<br>• Verificare che “Configura DNS” sia impostato su automatico<br><br>Le configurazioni sono corrette?",
       step1_4_title: "🔸 Apertura Ticket Supporto Locale",
-      step1_4_text: "Problema iPad<br>Aprire un ticket e assegnarlo a <strong>“ITALY - LOCAL IT TEAM”</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero serialeCategoria:",
+      step1_4_text: "<strong>Problema:</strong> iPad non rileva/non si connette alla rete Wi-Fi.<br><br>Aprire un ticket e assegnarlo a <strong>“ITALY - LOCAL IT TEAM”</strong><br>Inserire:<br>• MAC Address iPad (Indirizzo Wi-Fi nelle info ℹ️)<br>• Numero seriale<br><br>Categoria:",
       step1_5_title: "🔸 Analisi Diffusione Problema",
       step1_5_text: "Verificare se la rete Wi-Fi non viene rilevata su tutti gli iPad.",
       btn_all: "Da tutti gli iPad", btn_one: "Da un solo iPad",
       step1_6_title: "🔸 Verifica Infrastruttura Network",
-      step1_6_text: "Aprire un ticket e assegnarlo a <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> per verificare se l’Access Point è fuori servizio.Categoria:",
+      step1_6_text: "Aprire un ticket e assegnarlo a <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> per verificare se l'Access Point è fuori servizio.<br><br>Categoria:",
       step1_7_title: "🔸 Test Funzionalità Post-Configurazione",
-      step1_7_text: "Dopo la configurazione, verificare se l’iPad ha ripreso a funzionare.",
+      step1_7_text: "Dopo la configurazione, verificare se l'iPad ha ripreso a funzionare.<br><br>L'iPad funziona correttamente?",
       step1_8_title: "🔸 Risoluzione e Chiusura",
-      step1_8_text: "Problema risoltoAprire il ticket e chiuderlo come risolto.Categoria:",
+      step1_8_text: "<strong>Problema risolto.</strong><br><br>Aprire il ticket e chiuderlo come risolto.<br><br>Categoria:",
       step2_title: "🔹 Supporto Xstore",
       step2_text: "Chiedere allo store quale tipo di problema sta riscontrando.",
       btn_q1: "Problemi connettività", btn_q2: "Applicazione bloccata", btn_q3: "Registrazione iPad",
       step2_1_title: "🔸 Verifica Connessione WiFi",
-      step2_1_text: "Verificare se l’iPad è correttamente connesso alla rete Wi-Fi.",
+      step2_1_text: "Verificare se l'iPad è correttamente connesso alla rete Wi-Fi.<br><br>L'iPad è connesso?",
       step2_2_title: "🔸 Riavvio Dispositivo",
-      step2_2_text: "Riavviare completamente l’iPad.<br><br>Xstore funziona?",
+      step2_2_text: "Riavviare completamente l'iPad.<br><br>Xstore funziona?",
       step2_3_title: "🔸 Reset Servizio Tablet",
       step2_3_text: "Eseguire il comando:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Attendere il riavvio del servizio.<br><br>Xstore funziona?",
       step2_4_title: "🔸 Ripristino Applicazione",
-      step2_4_text: "Chiedere allo store di disinstallare e reinstallare l’applicazione Xstore.<br><br>Lo store è riuscito?",
+      step2_4_text: "Chiedere allo store di disinstallare e reinstallare l'applicazione Xstore.<br><br>Lo store è riuscito?",
       step2_5_title: "🔸 Configurazione Host/Porta",
-      step2_5_text: "Configurare l’app Xstore inserendo:<br>• Nome host: Micros-pos<br>• Porta: 8543",
+      step2_5_text: "Configurare l'app Xstore inserendo:<br>• Nome host: Micros-pos<br>• Porta: 8543",
       step2_6_title: "🔸 Configurazione SAP e Cassa",
       step2_6_text: "Accedere a Dettagli ubicazione e inserire:<br>• Negozio: codice SAP esteso<br>&nbsp;&nbsp;o C → 12 (es. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (es. E971 → 14971)<br>• Registratore:<br>&nbsp;&nbsp;o 30 = primo iPad<br>&nbsp;&nbsp;o 31 = secondo iPad<br><br>Salvare le modifiche.",
       step2_7_title: "🔸 Gestione Application Blocked",
-      step2_7_text: "Comparirà il messaggio “APPLICATION BLOCKED”.<br><br>Procedere con l’abilitazione dell’iPad.",
+      step2_7_text: "Comparirà il messaggio “APPLICATION BLOCKED”.<br><br>Procedere con l'abilitazione dell'iPad.",
       step2_8_title: "🔸 Accesso Backoffice CIAO",
       step2_8_text: "Accedere a Ciao → Backoffice.",
       step2_9_title: "🔸 Accesso Sezione Supporto",
       step2_9_text: "Selezionare la voce SUPPORTO.",
       step2_10_title: "🔸 Autorizzazione Dispositivo Mobile",
-      step2_10_text: "Selezionare Accesso dispositivo mobile e autorizzare l’iPad.Xstore funziona?",
+      step2_10_text: "Selezionare Accesso dispositivo mobile e autorizzare l'iPad.<br><br>Xstore funziona?",
       step2_11_title: "🔸 Escalation Supporto CIAO L2",
-      step2_11_text: "Aprire un ticket e assegnarlo a <strong>“LUX_CIAO_HD2”</strong><br>Inserire:<br>• MAC Address<br>• Numero serialeCategoria:",
+      step2_11_text: "<strong>Problema:</strong> Xstore non funziona dopo tutte le verifiche e configurazioni effettuate.<br><br>Aprire un ticket e assegnarlo a <strong>“LUX_CIAO_HD2”</strong><br>Inserire:<br>• MAC Address<br>• Numero seriale<br><br>Categoria:",
       step3_title: "🔹 Supporto Altri Applicativi",
       step3_text: "Chiedere allo store di disinstallare e reinstallare l’applicativo tramite HUB (equivalente dell’App Store).<br><br>Il problema è risolto?",
       step4_title: "🔸 Inserimento Credenziali",
@@ -471,51 +489,55 @@
       lang_select_title: "Select language / Seleziona la lingua",
       yes: "YES", no: "NO", btn_back: "back", btn_next: "NEXT", btn_copy: "Copy history",
       copy_success: "Troubleshooting history copied!",
+      copy_error: "Error during copy",
+      step1_intro: "Follow these steps, asking the store for confirmation at each one. Proceed through the flow based on the answers received, until the issue is resolved or the indicated ticket is opened.",
       step1_title: "🔹 Initial iPad Diagnosis",
       step1_text: "Select problem type:",
       btn_conn: "• Connectivity", btn_xstore: "• Xstore", btn_other: "• Other apps", btn_reg: "• Registration screen",
       step1_1_title: "🔸 WiFi Network Detection",
-      step1_1_text: "Ask the store if the iPad detects the “WIFI_STORE_EMEA” network.Is the network detected?",
+      step1_1_text: "<br>Ask the store if the iPad detects the “WIFI_STORE_EMEA” network.<br><br>Is the network detected?",
       step1_2_title: "🔸 WiFi Password Verification",
-      step1_2_text: "Verify if the store has the Wi-Fi password and is entering it correctly.<br>(Do not share password with store)",
+      step1_2_text: "Verify that the store has the correct Wi-Fi password and is entering it correctly.<br>(Do not share the password with the store)<br><br>Does the iPad connect to the network?",
+      step1_2b_title: "🔸 Wi-Fi Password Correction",
+      step1_2b_text: "Have the store re-enter the correct password, checking upper/lower case and special characters.<br><br>After the new attempt, does the iPad connect?",
       step1_3_title: "🔸 Network Parameter Check",
-      step1_3_text: "Perform following checks:• Open network info (ℹ️) “WIFI_STORE_EMEA”<br>• Verify “Private Wi-Fi Address” is disabled<br>• Verify “Configure DNS” is set to automaticAre the configurations correct?",
+      step1_3_text: "Perform the following checks:<br>• Open network info (ℹ️) “WIFI_STORE_EMEA”<br>• Verify “Private Wi-Fi Address” is disabled<br>• Verify “Configure DNS” is set to automatic<br><br>Are the configurations correct?",
       step1_4_title: "🔸 Local Support Ticket Opening",
-      step1_4_text: "iPad Problem<br>Open a ticket and assign it to <strong>“ITALY - LOCAL IT TEAM”</strong><br>Insert:<br>• iPad MAC Address (Wi-Fi address in info ℹ️)<br>• Serial numberCategory:",
+      step1_4_text: "<strong>Issue:</strong> iPad does not detect/connect to the Wi-Fi network.<br><br>Open a ticket and assign it to <strong>“ITALY - LOCAL IT TEAM”</strong><br>Insert:<br>• iPad MAC Address (Wi-Fi address in info ℹ️)<br>• Serial number<br><br>Category:",
       step1_5_title: "🔸 Service Outage Scope Analysis",
       step1_5_text: "Check if the Wi-Fi network is not detected on all iPads.",
       btn_all: "On all iPads", btn_one: "On only one iPad",
       step1_6_title: "🔸 Network Infrastructure Check",
-      step1_6_text: "Open a ticket and assign it to <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> to check if the Access Point is out of service.Category:",
+      step1_6_text: "Open a ticket and assign it to <strong>\"LUX_DXC EMEA_L2_NETWORK\"</strong> to check if the Access Point is out of service.<br><br>Category:",
       step1_7_title: "🔸 Post-Configuration Functionality Test",
-      step1_7_text: "After configuration, check if the iPad is working again.",
+      step1_7_text: "After configuration, check if the iPad is working again.<br><br>Is the iPad working correctly?",
       step1_8_title: "🔸 Resolution & Closure",
-      step1_8_text: "Problem resolvedOpen ticket and close as resolved.Category:",
+      step1_8_text: "<strong>Issue resolved.</strong><br><br>Open the ticket and close it as resolved.<br><br>Category:",
       step2_title: "🔹 Xstore Support",
       step2_text: "Ask the store what problem they are experiencing.",
       btn_q1: "Connectivity problem", btn_q2: "Application blocked", btn_q3: "iPad Registration",
       step2_1_title: "🔸 WiFi Connection Verification",
-      step2_1_text: "Verify if iPad is correctly connected to Wi-Fi network.",
+      step2_1_text: "Verify if the iPad is correctly connected to the Wi-Fi network.<br><br>Is the iPad connected?",
       step2_2_title: "🔸 Device Restart",
-      step2_2_text: "Completely restart iPad.<br><br>Does Xstore work?",
+      step2_2_text: "Completely restart the iPad.<br><br>Does Xstore work?",
       step2_3_title: "🔸 Tablet Service Reset",
-      step2_3_text: "Execute command:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Wait for service restart.<br><br>Does Xstore work?",
+      step2_3_text: "Execute the command:<br>micros-pos → TOOLS → Restart xStore Tablet<br><br>Wait for the service to restart.<br><br>Does Xstore work?",
       step2_4_title: "🔸 Application Recovery",
-      step2_4_text: "Ask store to uninstall and reinstall Xstore application.<br><br>Did the store succeed?",
+      step2_4_text: "Ask the store to uninstall and reinstall the Xstore application.<br><br>Did the store succeed?",
       step2_5_title: "🔸 Host/Port Configuration",
-      step2_5_text: "Configure Xstore app by entering:<br>• Host name: Micros-pos<br>• Port: 8543",
+      step2_5_text: "Configure the Xstore app by entering:<br>• Host name: Micros-pos<br>• Port: 8543",
       step2_6_title: "🔸 SAP and Register Configuration",
-      step2_6_text: "Access Location Details and enter:<br>• Store: extended SAP code<br>&nbsp;&nbsp;o C → 12 (e.g. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (e.g. E971 → 14971)<br>• Register:<br>&nbsp;&nbsp;o 30 = first iPad<br>&nbsp;&nbsp;o 31 = second iPad<br><br>Save changes.",
+      step2_6_text: "Access Location Details and enter:<br>• Store: extended SAP code<br>&nbsp;&nbsp;o C → 12 (e.g. C443 → 12443)<br>&nbsp;&nbsp;o E → 15 (e.g. E971 → 14971)<br>• Register:<br>&nbsp;&nbsp;o 30 = first iPad<br>&nbsp;&nbsp;o 31 = second iPad<br><br>Save the changes.",
       step2_7_title: "🔸 Application Blocked Management",
-      step2_7_text: "The message “APPLICATION BLOCKED” will appear.<br><br>Proceed with iPad enabling.",
+      step2_7_text: "The “APPLICATION BLOCKED” message will appear.<br><br>Proceed with enabling the iPad.",
       step2_8_title: "🔸 CIAO Backoffice Access",
       step2_8_text: "Access Ciao → Backoffice.",
       step2_9_title: "🔸 Support Menu Navigation",
-      step2_9_text: "Select SUPPORT option.",
+      step2_9_text: "Select the SUPPORT option.",
       step2_10_title: "🔸 Mobile Device Authorization",
-      step2_10_text: "Select Mobile device access and authorize iPad.Does Xstore work?",
+      step2_10_text: "Select Mobile device access and authorize the iPad.<br><br>Does Xstore work?",
       step2_11_title: "🔸 CIAO Specialist Support",
-      step2_11_text: "Open a ticket and assign it to <strong>“LUX_CIAO_HD2”</strong><br>Insert:<br>• MAC Address<br>• Serial numberCategory:",
+      step2_11_text: "<strong>Issue:</strong> Xstore is not working after all checks and configurations performed.<br><br>Open a ticket and assign it to <strong>“LUX_CIAO_HD2”</strong><br>Insert:<br>• MAC Address<br>• Serial number<br><br>Category:",
       step3_title: "🔹 Other Applications Support",
       step3_text: "Ask the store to uninstall and reinstall the application via HUB (the equivalent of the App Store).<br><br>Is problem resolved?",
       step4_title: "🔸 Credential Entry",
@@ -664,21 +686,27 @@ function goBack() {
 }
 
 function copyHistory() {
-  const prefixEn = 'The store reported issues with the iPad. Below is the troubleshooting performed and the checks carried out.';
-  const prefixIt = 'Lo store ha segnalato problemi con l’iPad. Di seguito il troubleshooting effettuato e le verifiche eseguite.';
+  const prefixEn = 'The store reported issues with opening the "Ciao" application. Please find below the troubleshooting steps performed and the checks carried out.';
+  const prefixIt = 'Lo store ha segnalato problemi nell’apertura dell’applicativo "Ciao". Di seguito il troubleshooting effettuato e le verifiche eseguite.';
 
   const choiceByStep = {};
   clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
-  const SKIP_STEPS = new Set(['langSelect','step1']);
+  const SKIP_STEPS = new Set(['langSelect', 'step1']);
 
   const buildSection = (langCode) => {
     let sec = '';
-    const separator = langCode === 'it' ? ' => Risposta: ' : ' => Answer: ';
-    const allSteps = [...historyStack, currentStepId];
-    allSteps.forEach((stepId) => {
-      if (SKIP_STEPS.has(stepId)) return;
+    const allSteps = [...historyStack, currentStepId].filter(stepId => !SKIP_STEPS.has(stepId));
+    const ansLabel = langCode === 'it' ? ' => Risposta: ' : ' => Answer: ';
+    const stepLabel = langCode === 'it' ? 'Passaggio' : 'Step';
+    const stepCount = allSteps.length;
+
+    allSteps.forEach((stepId, index) => {
       const step = document.getElementById(stepId);
       if (!step) return;
+
+      const titleEl = step.querySelector('h2');
+      const titleText = titleEl ? getTextFromI18n(titleEl, langCode) : stepId;
+      sec += `[ ${stepLabel} ${index + 1}/${stepCount} — ${titleText} ]\n`;
 
       const ch = choiceByStep[stepId];
       const chosen = ch ? (langCode === 'en' ? ch.en : ch.it) : '';
@@ -689,27 +717,28 @@ function copyHistory() {
         let line = getTextFromI18n(node, langCode);
         if (!line) return;
         if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
-          line = `${line}${separator}${chosen}`;
+          line = `${line}${ansLabel}${chosen}`;
           appendedChoice = true;
         }
-        sec += `• ${line}\n`;
+        sec += `  • ${line}\n`;
       });
+
       if (chosen && !appendedChoice) {
-        sec += `${separator}${chosen}\n`;
+        sec += `  ${ansLabel}${chosen}\n`;
       }
-      sec += `\n`;
+      sec += '\n';
     });
+
     return sec.trim();
   };
 
   const itSection = buildSection('it');
   const enSection = buildSection('en');
-
-  const finalOutput = `${prefixIt}\n\n${itSection ? itSection + '\n' : ''}\n--------------------------------------\n\n${prefixEn}\n\n${enSection}`;
+  const finalOutput = `${prefixIt}\n\n${itSection}\n\n--------------------------------------\n\n${prefixEn}\n\n${enSection}`;
 
   navigator.clipboard.writeText(finalOutput)
     .then(() => alert(i18n[language].copy_success))
-    .catch(() => alert('Error during copy'));
+    .catch(() => alert(i18n[language].copy_error || 'Error during copy'));
 }
   </script>
 </body></html>

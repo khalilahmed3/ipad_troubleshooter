@@ -408,7 +408,7 @@
       step1_intro: "Segui i passaggi indicati chiedendo conferma allo store ad ogni step. Procedi nel flusso in base alle risposte ricevute, fino alla risoluzione o all'apertura del ticket indicato.",
       step1_title: "🔹 Diagnosi Iniziale iPad",
       step1_text: "Selezionare la tipologia di problema:",
-      btn_conn: "• Connettività", btn_xstore: "• Xstore", btn_other: "• Altri applicativi", btn_reg: "• Schermata di registrazione",
+      btn_conn: "Connettività", btn_xstore: "Xstore", btn_other: "Altri applicativi", btn_reg: "Schermata di registrazione",
       step1_1_title: "🔸 Rilevamento Rete Wi-Fi",
       step1_1_text: "<br>Chiedere allo store se l’iPad rileva la rete Wi-Fi “WIFI_STORE_EMEA”.<br><br>La rete è rilevata?",
       step1_2_title: "🔸 Verifica Password Wi-Fi",
@@ -493,7 +493,7 @@
       step1_intro: "Follow these steps, asking the store for confirmation at each one. Proceed through the flow based on the answers received, until the issue is resolved or the indicated ticket is opened.",
       step1_title: "🔹 Initial iPad Diagnosis",
       step1_text: "Select problem type:",
-      btn_conn: "• Connectivity", btn_xstore: "• Xstore", btn_other: "• Other apps", btn_reg: "• Registration screen",
+      btn_conn: "Connectivity", btn_xstore: "Xstore", btn_other: "Other apps", btn_reg: "Registration screen",
       step1_1_title: "🔸 WiFi Network Detection",
       step1_1_text: "<br>Ask the store if the iPad detects the “WIFI_STORE_EMEA” network.<br><br>Is the network detected?",
       step1_2_title: "🔸 WiFi Password Verification",
@@ -568,6 +568,87 @@
       alt_ciao_auth: "CIAO Authorization",
       alt_step2_11: "Serial data",
       alt_step3: "General reinstall",
+      }
+    };
+
+    const copyMap = {
+      step1: {
+        it: "Lo store sta segnalando problemi con {button}.",
+        en: "The store is reporting issues with {button}."
+      },
+      step1_1: {
+        "SÌ": { it: "L’iPad rileva la rete Wi‑Fi \"WIFI_STORE_EMEA\".", en: "The iPad detects the Wi‑Fi network \"WIFI_STORE_EMEA\"." },
+        "NO": { it: "L’iPad non rileva la rete Wi‑Fi \"WIFI_STORE_EMEA\".", en: "The iPad does not detect the Wi‑Fi network \"WIFI_STORE_EMEA\"." }
+      },
+      step1_2: {
+        "NO": { it: "Lo store non conosce la password Wi‑Fi e vuole collegare l’iPad.", en: "The store does not know the Wi‑Fi password and wants to connect the iPad." }
+      },
+      step1_3: {
+        "SÌ": { it: "Verificato “Indirizzo Wi‑Fi privato” su Non attivo e DNS su Automatico.", en: "Verified “Private Wi‑Fi Address” is Off and DNS is Automatic." },
+        "NO": { it: "“Indirizzo Wi‑Fi privato” non era attivo.", en: "“Private Wi‑Fi Address” was not enabled." }
+      },
+      step1_4: {
+        it: "Vi chiediamo cortesemente di verificare.",
+        en: "Kindly, we ask you to check."
+      },
+      step1_5: {
+        "Da tutti gli iPad": { it: "Abbiamo verificato che la rete Wi‑Fi non viene rilevata su tutti gli iPad.", en: "We verified that the Wi‑Fi network is not detected on all iPads." },
+        "Da un solo iPad": { it: "Abbiamo verificato che la rete Wi‑Fi non viene rilevata da un solo iPad.", en: "We verified that the Wi‑Fi network is not detected on only one iPad." }
+      },
+      step1_6: {
+        it: "Si prega di verificare il funzionamento della rete Wi‑Fi \"WIFI_STORE_EMEA\", in quanto non viene rilevata dallo store.",
+        en: "Please check the functionality of the Wi‑Fi network \"WIFI_STORE_EMEA\", as it is not being detected by the store."
+      },
+      step1_8: {
+        it: "Problema risolto.",
+        en: "Issue resolved."
+      },
+      step2: {
+        it: "Il problema che sta riscontrando lo store è: {button}",
+        en: "The issue reported by the store is: {button}"
+      },
+      step2_2: {
+        "SÌ": { it: "Abbiamo riavviato l’iPad e il problema è stato risolto.", en: "We restarted the iPad and the issue was resolved." },
+        "NO": { it: "Abbiamo riavviato l’iPad, ma il problema non è stato risolto.", en: "We restarted the iPad, but the issue was not resolved." }
+      },
+      step2_3: {
+        it: "Abbiamo eseguito il comando Micros POS → TOOLS → Restart xStore Tablet.",
+        en: "We executed the Micros POS command → TOOLS → Restart xStore Tablet."
+      },
+      step2_4: {
+        it: "Abbiamo chiesto allo store di disinstallare e reinstallare l’app XStore.",
+        en: "We asked the store to uninstall and reinstall the XStore app."
+      },
+      step2_5: {
+        it: "Abbiamo configurato Nome host: Micros-pos e Porta: 8543.",
+        en: "We configured Hostname: Micros-pos and Port: 8543."
+      },
+      step2_6: {
+        it: "Nei dettagli ubicazione abbiamo inserito il codice SAP numerico e il registratore.",
+        en: "In Location Details, we entered the numeric SAP code and the cash register."
+      },
+      step2_7: {
+        it: "È comparso il messaggio \"Application Blocked\" e siamo andati nel Back Office per sbloccare l’iPad.",
+        en: "The message \"Application Blocked\" appeared, and we accessed the Back Office to unblock the iPad."
+      },
+      step2_11: {
+        it: "Il problema è rimasto irrisolto.",
+        en: "The issue remained unresolved."
+      },
+      step3: {
+        it: "Abbiamo chiesto allo store di disinstallare e reinstallare l’applicativo tramite \"HUB\".",
+        en: "We asked the store to uninstall and reinstall the application via \"HUB\"."
+      },
+      step4: {
+        it: "Abbiamo inserito il nome corrispondente allo store e la password \"Luxottica01\".",
+        en: "We entered the store name and the password \"Luxottica01\"."
+      },
+      step4_1: {
+        it: "L’iPad ha iniziato i download.",
+        en: "The iPad started downloading."
+      },
+      step4_2: {
+        "NO": { it: "Siamo passati alla configurazione XStore.", en: "We proceeded with the XStore configuration." }
       }
     };
 
@@ -686,54 +767,44 @@ function goBack() {
 }
 
 function copyHistory() {
-  const prefixEn = 'The store reported issues with opening the "Ciao" application. Please find below the troubleshooting steps performed and the checks carried out.';
-  const prefixIt = 'Lo store ha segnalato problemi nell’apertura dell’applicativo "Ciao". Di seguito il troubleshooting effettuato e le verifiche eseguite.';
+    const itLines = [];
+    const enLines = [];
 
-  const choiceByStep = {};
-  clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
-  const SKIP_STEPS = new Set(['langSelect', 'step1']);
+    const allSteps = [...historyStack, currentStepId];
+    const choiceByStep = {};
+    clickTrail.forEach(c => { if (c.stepId) choiceByStep[c.stepId] = c; });
 
-  const buildSection = (langCode) => {
-    let sec = '';
-    const allSteps = [...historyStack, currentStepId].filter(stepId => !SKIP_STEPS.has(stepId));
-    const ansLabel = langCode === 'it' ? ' => Risposta: ' : ' => Answer: ';
-    const stepLabel = langCode === 'it' ? 'Passaggio' : 'Step';
-    const stepCount = allSteps.length;
+    allSteps.forEach(stepId => {
+        const stepRule = copyMap[stepId];
+        if (!stepRule) return;
 
-    allSteps.forEach((stepId, index) => {
-      const step = document.getElementById(stepId);
-      if (!step) return;
+        const choice = choiceByStep[stepId];
+        let textRule = stepRule;
 
-      const titleEl = step.querySelector('h2');
-      const titleText = titleEl ? getTextFromI18n(titleEl, langCode) : stepId;
-      sec += `[ ${stepLabel} ${index + 1}/${stepCount} — ${titleText} ]\n`;
-
-      const ch = choiceByStep[stepId];
-      const chosen = ch ? (langCode === 'en' ? ch.en : ch.it) : '';
-
-      let appendedChoice = false;
-      const lines = step.querySelectorAll('p, li');
-      lines.forEach(node => {
-        let line = getTextFromI18n(node, langCode);
-        if (!line) return;
-        if (!appendedChoice && chosen && node.tagName.toLowerCase() === 'p') {
-          line = `${line}${ansLabel}${chosen}`;
-          appendedChoice = true;
+        if (choice) {
+            const choiceTextIt = choice.it.trim();
+            if (stepRule[choiceTextIt]) {
+                textRule = stepRule[choiceTextIt];
+            }
         }
-        sec += `  • ${line}\n`;
-      });
 
-      if (chosen && !appendedChoice) {
-        sec += `  ${ansLabel}${chosen}\n`;
-      }
-      sec += '\n';
+        if (textRule.it && textRule.en) {
+            let itText = textRule.it;
+            let enText = textRule.en;
+            if (choice && itText.includes('{button}')) {
+                itText = itText.replace('{button}', `"${choice.it.trim()}"`);
+                enText = enText.replace('{button}', `"${choice.en.trim()}"`);
+            }
+            itLines.push(itText);
+            enLines.push(enText);
+        }
     });
 
-    return sec.trim();
-  };
-
-  const itSection = buildSection('it');
-  const enSection = buildSection('en');
+  const prefixIt = 'Di seguito il troubleshooting effettuato e le verifiche eseguite:';
+  const prefixEn = 'Please find below the troubleshooting steps performed and the checks carried out:';
+  
+  const itSection = itLines.map(line => `- ${line}`).join('\n');
+  const enSection = enLines.map(line => `- ${line}`).join('\n');
   const finalOutput = `${prefixIt}\n\n${itSection}\n\n--------------------------------------\n\n${prefixEn}\n\n${enSection}`;
 
   navigator.clipboard.writeText(finalOutput)
